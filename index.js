@@ -1,18 +1,16 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
-const fs = require('fs');
 const AWS = require('aws-sdk');
 
 try {
   const functionName = core.getInput('function-name');
-  const package = core.getInput('package');
   const AWS_SECRET_KEY = core.getInput('AWS_SECRET_KEY');
   const AWS_SECRET_ID = core.getInput('AWS_SECRET_ID');
   const AWS_REGION = core.getInput('AWS_REGION');
+  const IMAGE_URI = core.getInput('IMAGE_URI');
 
-  console.log(`Deploying ${functionName} from ${package}.`);
+  console.log(`Deploying ${functionName}`);
 
-  var zipBuffer = fs.readFileSync(`./${package}`);
+  // var zipBuffer = fs.readFileSync(`./${packageName}`);
   core.debug('ZIP file put into memory buffer.');
 
   const lambda = new AWS.Lambda({
@@ -28,7 +26,7 @@ try {
   const params = {
     FunctionName: functionName,
     Publish: true,
-    ZipFile: zipBuffer,
+    ImageUri: IMAGE_URI,
   };
 
   lambda.updateFunctionCode(params, err => {

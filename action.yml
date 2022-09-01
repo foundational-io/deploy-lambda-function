@@ -1,6 +1,6 @@
 name: 'Deploy AWS Lambda function'
 description: 'Update the code of an AWS Lambda function'
-author: 'Yves Gurcan'
+author: "Omri Ildis (on top of Yves Gurcan's work)"
 branding:
   icon: 'layers'
   color: 'orange'
@@ -8,18 +8,27 @@ inputs:
   package:
     description: 'Zip package of Lambda and dependencies'
     default: ''
+    required: false
   function-name:
     description: 'Name of Lambda function'
     default: ''
+    required: false
   AWS_SECRET_KEY:
     description: 'AWS secret key'
     default: ''
+    required: false
   AWS_SECRET_ID:
     description: 'AWS secret key ID'
     default: ''
+    required: false
   AWS_REGION:
     description: 'AWS region of the Lambda'
     default: ''
+    required: false
+  IMAGE_URI:
+    description: 'IMAGE URI to use as the lambda container'
+    default: ''
+    required: false
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'
