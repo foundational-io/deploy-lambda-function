@@ -5,30 +5,21 @@ branding:
   icon: 'layers'
   color: 'orange'
 inputs:
-  package:
-    description: 'Zip package of Lambda and dependencies'
-    default: ''
-    required: false
   function-name:
     description: 'Name of Lambda function'
-    default: ''
-    required: false
-  AWS_SECRET_KEY:
+    required: true
+  aws_secret_key:
     description: 'AWS secret key'
-    default: ''
-    required: false
-  AWS_SECRET_ID:
-    description: 'AWS secret key ID'
-    default: ''
-    required: false
-  AWS_REGION:
+    required: true
+  aws_access_key_id:
+    description: 'AWS access key ID'
+    required: true
+  aws_region:
     description: 'AWS region of the Lambda'
-    default: ''
-    required: false
-  IMAGE_URI:
+    required: true
+  image_uri:
     description: 'IMAGE URI to use as the lambda container'
-    default: ''
-    required: false
+    required: true
 runs:
   using: 'node16'
   main: 'index.js'
